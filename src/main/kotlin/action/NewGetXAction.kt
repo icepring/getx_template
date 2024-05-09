@@ -47,6 +47,11 @@ class NewGetXAction : AnAction() {
                 data.modeDefault = (GetXName.ModeDefault == modelType)
                 data.modeEasy = (GetXName.ModeEasy == modelType)
 
+                //deal default value
+                val httpType = view.httpGroup.selection.actionCommand
+                data.modeHttp = (GetXName.ModeHttpManager == httpType)
+                data.modeUseCase = (GetXName.ModeUseCase == httpType)
+
                 //function area
                 data.function.useFolder = view.folderBox.isSelected
                 data.function.usePrefix = view.prefixBox.isSelected
@@ -121,6 +126,22 @@ class NewGetXAction : AnAction() {
         if (data.function.addBinding) {
             generateFile("binding.dart", path, "${prefixName}binding.dart")
         }
+
+        if (data.modeUseCase) {
+            // app\lib\data\provider\use_case
+            val useCasePath =
+                project?.basePath + File.separator + "lib" + File.separator + "data" + File.separator + "other" + File.separator + "provider" + File.separator + "use_case"
+            // app\lib\data\provider\service
+            val servicePath =
+                project?.basePath + File.separator + "lib" + File.separator + "data" + File.separator + "other" + File.separator + "provider" + File.separator + "service"
+            generateFile("usecase.dart", useCasePath, "${prefixName}api_use_case.dart")
+            generateFile("service.dart", servicePath, "${prefixName}service.dart")
+        } else if (data.modeHttp) {
+            val repositoryPath =
+                project?.basePath + File.separator + "lib" + File.separator + "data" + File.separator + "repository"
+            generateFile("repository.dart", repositoryPath, "${prefixName}repository.dart")
+        }
+
     }
 
     private fun generateDefault(path: String, prefixName: String) {
@@ -191,6 +212,15 @@ class NewGetXAction : AnAction() {
         //replace state file
         content = replaceState(content, inputFileName)
 
+        //replace usecase file
+        content = replaceUseCase(content, inputFileName)
+
+        //replace service file
+        content = replaceService(content, inputFileName)
+
+        //replace repository file
+        content = replaceRepository(content, inputFileName)
+
         content = content.replace("@name".toRegex(), name)
 
         return content
@@ -256,6 +286,7 @@ class NewGetXAction : AnAction() {
         tempContent = tempContent.replace("logic".toRegex(), data.module.logicName.lowercase(Locale.getDefault()))
         tempContent = tempContent.replace("@nameState".toRegex(), "@name${data.module.stateName}")
         tempContent = tempContent.replace("state".toRegex(), data.module.stateName.lowercase(Locale.getDefault()))
+        tempContent = tempContent.replace("@package".toRegex(), project!!.name)
 
         return tempContent
     }
@@ -288,6 +319,35 @@ class NewGetXAction : AnAction() {
         return tempContent
     }
 
+    private fun replaceUseCase(content: String, inputFileName: String): String {
+        var tempContent = content
+        if (!inputFileName.contains("usecase.dart")) {
+            return tempContent
+        }
+
+
+
+        return tempContent
+    }
+
+    private fun replaceService(content: String, inputFileName: String): String {
+        var tempContent = content
+        if (!inputFileName.contains("service.dart")) {
+            return tempContent
+        }
+
+        return tempContent
+    }
+
+    private fun replaceRepository(content: String, inputFileName: String): String {
+        var tempContent = content
+        if (!inputFileName.contains("repository.dart")) {
+            return tempContent
+        }
+
+        return tempContent
+    }
+
     private fun getSuitableContent(inputFileName: String): String {
         //deal auto dispose or pageView
         var defaultFolder = "/templates/normal/"
@@ -306,6 +366,14 @@ class NewGetXAction : AnAction() {
         //add lifecycle
         if (data.function.addLifecycle && inputFileName.contains("logic.dart")) {
             defaultFolder = "/templates/lifecycle/"
+        }
+
+        if (inputFileName.contains("usecase.dart")) {
+            defaultFolder = "/templates/usecase/"
+        }
+
+        if (inputFileName.contains("service.dart")) {
+            defaultFolder = "/templates/service/"
         }
 
         //read file

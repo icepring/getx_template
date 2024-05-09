@@ -38,7 +38,7 @@ dependencies {
 // updateSinceUntilBuild no restrictions on plug-in installation corresponding
 // to the idea version
 intellij {
-    version = '2021.3.2'
+    version = '2021.2.1'
     updateSinceUntilBuild = false
 }
 

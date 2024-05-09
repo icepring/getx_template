@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'logic.dart';
 import 'state.dart';
 
-class @namePage extends StatelessWidget {
-  @namePage({Key? key}) : super(key: key);
+import 'package:@package/base/mvvm/view/base_page.dart';
 
-  final @nameLogic logic = Get.put(@nameLogic());
-  final @nameState state = Get.find<@nameLogic>().state;
+class @namePage extends BasePage<@nameViewMode> {
+  @namePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildContent(BuildContext context) {
     return Container();
   }
 }

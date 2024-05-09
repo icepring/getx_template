@@ -1,26 +1,19 @@
 <idea-plugin>
     <id>com.tao.getx</id>
     <!-- Plug-in name, the name displayed by the official plugin library -->
-    <name>GetX</name>
+    <name>GetXHelper</name>
     <!-- version number  -->
     <!--    <version>1.1</version>-->
     <!-- homepage and email (contact address)-->
-    <vendor email="xdd666@foxmail.com" url="https://github.com/CNAD666/getx_template">小呆呆666</vendor>
+    <vendor>power by TangXiaoTian</vendor>
 
     <!-- The description of the plug-in
     (the default value cannot be used, it must be modified to its own.
     And it needs to be greater than 40 characters)-->
     <description><![CDATA[
-    <h2>Used to generate the template code of GetX framework</h2>
+    <h2>MVVMのテンプレートコードを生成する</h2>
     <ul>
-        <li>Right-click the File: New -> GetX</li>
-        <li>GitHub：<a href="https://github.com/CNAD666/getx_template">getx_template</a></li>
-        <h3>GetX Use Article</h3>
-        <li>使用：<a href="https://juejin.cn/post/6924104248275763208"> Flutter GetX使用---简洁的魅力！</a></li>
-        <li>原理：<a href="https://juejin.cn/post/6984593635681517582"> Flutter GetX深度剖析 | 我们终将走出自己的路</a></li>
-        <li>插件说明：<a href="https://juejin.cn/post/7005003323753365517"> 本IDEA插件超详细使用教程 </a></li>
-        <h3>Statement</h3>
-        <li>Part of fast code snippet prompt come from <a href="https://github.com/cjamcu/getx-snippets-intelliJ/blob/master/src/main/resources/liveTemplates/getx.xml"> getx-snippets-intelliJ</a></li>
+        <li>右クリックします: New -> MVVM</li>
     </ul>
     ]]></description>
 
@@ -35,7 +28,7 @@
     <!-- Write plugin actions -->
     <actions>
         <!-- Add your actions here -->
-        <action id="com.xdd.NewGetX" class="action.NewGetXAction" text="GetX" description="Create getX template code"
+        <action id="com.xdd.NewGetX" class="action.NewGetXAction" text="MVVM" description="Create getX template code"
                 icon="/image/getx_icon.png">
             <add-to-group group-id="NewGroup" anchor="first"/>
         </action>

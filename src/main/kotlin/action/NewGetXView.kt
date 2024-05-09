@@ -19,9 +19,10 @@ open class NewGetXView(private val getXListener: GetXListener) {
     /**
      * Overall popup entity
      */
-    private var jDialog: JDialog = JDialog(JFrame(), "GetX Template Code Produce")
+    private var jDialog: JDialog = JDialog(JFrame(), "GetX Helper Code Produce")
     lateinit var nameTextField: JTextField
     lateinit var modeGroup: ButtonGroup
+    lateinit var httpGroup: ButtonGroup
 
     /**
      * select Function：main Function
@@ -95,7 +96,7 @@ open class NewGetXView(private val getXListener: GetXListener) {
     private fun setMode(container: Container) {
         //Two rows and two columns
         val template = JPanel()
-        template.layout = GridLayout(1, 2)
+        template.layout = GridLayout(1, 4)
         //Set the main module style：mode, function
         template.border = BorderFactory.createTitledBorder("Select Mode")
 
@@ -103,19 +104,36 @@ open class NewGetXView(private val getXListener: GetXListener) {
         val defaultBtn = JRadioButton(GetXName.ModeDefault, data.modeDefault)
         defaultBtn.actionCommand = GetXName.ModeDefault
         defaultBtn.addActionListener(actionChangeListener)
-        defaultBtn.border = BorderFactory.createEmptyBorder(5, 10, 10, 100)
+        defaultBtn.border = BorderFactory.createEmptyBorder(5, 10, 10, 20)
         template.add(defaultBtn)
 
         //easy model
         val easyBtn = JRadioButton(GetXName.ModeEasy, data.modeEasy)
         easyBtn.actionCommand = GetXName.ModeEasy
         easyBtn.addActionListener(actionChangeListener)
-        easyBtn.border = BorderFactory.createEmptyBorder(5, 10, 10, 100)
+        easyBtn.border = BorderFactory.createEmptyBorder(5, 10, 10, 20)
         template.add(easyBtn)
+
+        //http model
+        val httpBtn = JRadioButton(GetXName.ModeHttpManager, data.modeHttp)
+        httpBtn.actionCommand = GetXName.ModeHttpManager
+        httpBtn.addActionListener(actionChangeListener)
+        httpBtn.border = BorderFactory.createEmptyBorder(5, 10, 10, 20)
+        template.add(httpBtn)
+
+        //use case model
+        val useCaseBtn = JRadioButton(GetXName.ModeUseCase, data.modeUseCase)
+        useCaseBtn.actionCommand = GetXName.ModeUseCase
+        useCaseBtn.addActionListener(actionChangeListener)
+        useCaseBtn.border = BorderFactory.createEmptyBorder(5, 10, 10, 20)
+        template.add(useCaseBtn)
 
         modeGroup = ButtonGroup()
         modeGroup.add(defaultBtn)
         modeGroup.add(easyBtn)
+        httpGroup = ButtonGroup()
+        httpGroup.add(httpBtn)
+        httpGroup.add(useCaseBtn)
 
         container.add(template)
         setSpacing(container)
@@ -223,7 +241,7 @@ open class NewGetXView(private val getXListener: GetXListener) {
     private fun setFunctionTab(main: JPanel, minor: JPanel, template: JPanel, container: Container) {
         val function = JPanel()
         function.border = BorderFactory.createTitledBorder("Select Function")
-
+        function.layout = FlowLayout(FlowLayout.LEFT)
         //add tab
         val tab = JBTabbedPane()
         tab.addTab("Main", main)
@@ -263,6 +281,7 @@ open class NewGetXView(private val getXListener: GetXListener) {
         val padding = JPanel()
         padding.border = BorderFactory.createEmptyBorder(0, 0, 5, 0)
         nameField.border = BorderFactory.createTitledBorder("Module Name")
+        nameField.layout = FlowLayout(FlowLayout.LEFT);
         nameTextField = JTextField(33)
         nameTextField.addKeyListener(keyListener)
         padding.add(nameTextField)

@@ -20,6 +20,12 @@ class DataService : PersistentStateComponent<DataService> {
     @JvmField
     var modeEasy = false
 
+    @JvmField
+    var modeHttp = true
+
+    @JvmField
+    var modeUseCase = false
+
     //module name suffix
     @JvmField
     @OptionTag(converter = ModuleNameSuffixConverter::class)

@@ -40,6 +40,9 @@ data class ModuleNameSuffix(
     var viewFileName: String = "View",
     //state layer name
     var stateName: String = "State",
+
+    var useCaseName: String = "UseCase",
+    var serviceName: String = "Service",
 )
 
 //Setting Info
