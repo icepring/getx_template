@@ -10,7 +10,7 @@ import com.intellij.util.xmlb.annotations.OptionTag
 //val modeInfoConverter: KClass<out Converter<ModeInfoConverter>> = ModeInfoConverter::class;
 
 //custom save location
-@State(name = "DataService", storages = [Storage(value = "DataService.xml")])
+@State(name = "DataService", storages = [Storage(value = "aaaaaatymtymtym.xml")])
 class DataService : PersistentStateComponent<DataService> {
     //default true: use default mode
     @JvmField
@@ -21,10 +21,10 @@ class DataService : PersistentStateComponent<DataService> {
     var modeEasy = false
 
     @JvmField
-    var modeHttp = true
+    var modeHttp = false
 
     @JvmField
-    var modeUseCase = false
+    var modeUseCase = true
 
     //module name suffix
     @JvmField
@@ -38,8 +38,8 @@ class DataService : PersistentStateComponent<DataService> {
     @JvmField
     @OptionTag(converter = FunctionInfoConverter::class)
     var function = FunctionInfo(
-        useFolder = true, usePrefix = false, isPageView = false,
-        addBinding = false, addLifecycle = false, autoDispose = false,
+        useFolder = true, usePrefix = true, isPageView = false,
+        addBinding = true, addLifecycle = false, autoDispose = false,
         lintNorm = true, funTabIndex = 0,
     )
 
@@ -54,7 +54,7 @@ class DataService : PersistentStateComponent<DataService> {
     ///default true
     @JvmField
     @OptionTag(converter = TemplateInfoConverter::class)
-    var templatePage = TemplateInfo(view = "Page", selected = true)
+    var templatePage = TemplateInfo(view = "Page", selected = false)
 
     ///default false
     @JvmField
@@ -64,7 +64,7 @@ class DataService : PersistentStateComponent<DataService> {
     ///default false
     @JvmField
     @OptionTag(converter = TemplateInfoConverter::class)
-    var templateCustom = TemplateInfo(view = "Widget", selected = false)
+    var templateCustom = TemplateInfo(logic = "ViewMode", viewFile = "Page",selected = true)
 
 
     override fun getState(): DataService {

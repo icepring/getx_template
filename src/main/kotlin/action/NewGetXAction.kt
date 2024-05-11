@@ -130,10 +130,10 @@ class NewGetXAction : AnAction() {
         if (data.modeUseCase) {
             // app\lib\data\provider\use_case
             val useCasePath =
-                project?.basePath + File.separator + "lib" + File.separator + "data" + File.separator + "other" + File.separator + "provider" + File.separator + "use_case"
+                project?.basePath + File.separator + "lib" + File.separator + "data" + File.separator + "provider" + File.separator + "use_case"
             // app\lib\data\provider\service
             val servicePath =
-                project?.basePath + File.separator + "lib" + File.separator + "data" + File.separator + "other" + File.separator + "provider" + File.separator + "service"
+                project?.basePath + File.separator + "lib" + File.separator + "data" + File.separator + "provider" + File.separator + "service"
             generateFile("usecase.dart", useCasePath, "${prefixName}api_use_case.dart")
             generateFile("service.dart", servicePath, "${prefixName}service.dart")
         } else if (data.modeHttp) {
@@ -146,7 +146,7 @@ class NewGetXAction : AnAction() {
 
     private fun generateDefault(path: String, prefixName: String) {
         generateFile("state.dart", path, "$prefixName${data.module.stateName.lowercase(Locale.getDefault())}.dart")
-        generateFile("logic.dart", path, "$prefixName${data.module.logicName.lowercase(Locale.getDefault())}.dart")
+        generateFile("logic.dart", path, "$prefixName${data.module.logicName.lowercase(Locale.getDefault()).replace("viewmode".toRegex(),"view_mode")}.dart")
         generateFile("view.dart", path, "$prefixName${data.module.viewFileName.lowercase(Locale.getDefault())}.dart")
     }
 
@@ -222,6 +222,8 @@ class NewGetXAction : AnAction() {
         content = replaceRepository(content, inputFileName)
 
         content = content.replace("@name".toRegex(), name)
+        content = content.replace("@xname".toRegex(), name.lowercase())
+        content = content.replace("@package".toRegex(), "untitled1")
 
         return content
     }
@@ -286,7 +288,7 @@ class NewGetXAction : AnAction() {
         tempContent = tempContent.replace("logic".toRegex(), data.module.logicName.lowercase(Locale.getDefault()))
         tempContent = tempContent.replace("@nameState".toRegex(), "@name${data.module.stateName}")
         tempContent = tempContent.replace("state".toRegex(), data.module.stateName.lowercase(Locale.getDefault()))
-        tempContent = tempContent.replace("@package".toRegex(), project!!.name)
+        tempContent = tempContent.replace("viewmode".toRegex(), "view_mode")
 
         return tempContent
     }

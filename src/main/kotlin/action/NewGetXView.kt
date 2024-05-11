@@ -96,7 +96,7 @@ open class NewGetXView(private val getXListener: GetXListener) {
     private fun setMode(container: Container) {
         //Two rows and two columns
         val template = JPanel()
-        template.layout = GridLayout(1, 4)
+        template.layout = GridLayout(1, 3)
         //Set the main module style：mode, function
         template.border = BorderFactory.createTitledBorder("Select Mode")
 
@@ -115,11 +115,11 @@ open class NewGetXView(private val getXListener: GetXListener) {
         template.add(easyBtn)
 
         //http model
-        val httpBtn = JRadioButton(GetXName.ModeHttpManager, data.modeHttp)
-        httpBtn.actionCommand = GetXName.ModeHttpManager
-        httpBtn.addActionListener(actionChangeListener)
-        httpBtn.border = BorderFactory.createEmptyBorder(5, 10, 10, 20)
-        template.add(httpBtn)
+//        val httpBtn = JRadioButton(GetXName.ModeHttpManager, data.modeHttp)
+//        httpBtn.actionCommand = GetXName.ModeHttpManager
+//        httpBtn.addActionListener(actionChangeListener)
+//        httpBtn.border = BorderFactory.createEmptyBorder(5, 10, 10, 20)
+//        template.add(httpBtn)
 
         //use case model
         val useCaseBtn = JRadioButton(GetXName.ModeUseCase, data.modeUseCase)
@@ -132,7 +132,7 @@ open class NewGetXView(private val getXListener: GetXListener) {
         modeGroup.add(defaultBtn)
         modeGroup.add(easyBtn)
         httpGroup = ButtonGroup()
-        httpGroup.add(httpBtn)
+//        httpGroup.add(httpBtn)
         httpGroup.add(useCaseBtn)
 
         container.add(template)

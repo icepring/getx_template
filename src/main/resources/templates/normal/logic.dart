@@ -6,7 +6,7 @@ import 'package:@package/data/provider/service/@xname_service.dart';
 import 'state.dart';
 
 class @nameLogic extends ViewMode<@nameActions, @nameService> {
-  final @nameState state = @nameState();
+  final @nameState @xnameState = @nameState();
 
   @override
     dispatch(@nameActions action){
