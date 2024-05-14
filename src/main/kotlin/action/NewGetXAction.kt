@@ -146,7 +146,13 @@ class NewGetXAction : AnAction() {
 
     private fun generateDefault(path: String, prefixName: String) {
         generateFile("state.dart", path, "$prefixName${data.module.stateName.lowercase(Locale.getDefault())}.dart")
-        generateFile("logic.dart", path, "$prefixName${data.module.logicName.lowercase(Locale.getDefault()).replace("viewmode".toRegex(),"view_mode")}.dart")
+        generateFile(
+            "logic.dart",
+            path,
+            "$prefixName${
+                data.module.logicName.lowercase(Locale.getDefault()).replace("viewmode".toRegex(), "view_mode")
+            }.dart"
+        )
         generateFile("view.dart", path, "$prefixName${data.module.viewFileName.lowercase(Locale.getDefault())}.dart")
     }
 
@@ -221,8 +227,14 @@ class NewGetXAction : AnAction() {
         //replace repository file
         content = replaceRepository(content, inputFileName)
 
-        content = content.replace("@name".toRegex(), name)
-        content = content.replace("@xname".toRegex(), name.lowercase())
+        val named = name.split("_").joinToString(separator = "") { part ->
+            part.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+        }
+        content = content.replace("@name".toRegex(), named)
+        content = content.replace("@pname".toRegex(), name.replaceFirstChar { it.lowercase(Locale.getDefault()) })
+        content = content.replace(
+            "@fname".toRegex(),
+            named.replaceFirstChar { it.lowercase(Locale.getDefault()) })
         content = content.replace("@package".toRegex(), "untitled1")
 
         return content
