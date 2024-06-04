@@ -45,6 +45,12 @@ intellij {
 // Update instructions are here
 patchPluginXml {
     changeNotes = """
+
+    <h1>3.4.x</h1>
+      <ul>
+        <li>update package name</li>
+     </ul>
+
       <h1>3.3.x</h1>
       <ul>
         <li>Adjust StatefulWidget template</li>
