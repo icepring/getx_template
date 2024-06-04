@@ -5,8 +5,8 @@ object GetXName {
     const val ModeDefault = "Default"
     const val ModeEasy = "Easy"
 
-    const val ModeHttpManager = "HttpManager"
-    const val ModeUseCase = "UseCase"
+    const val ModeStateful = "stateful"
+    const val ModeStateless = "stateless"
 
     //main function
     const val mainUseFolder = "useFolder"

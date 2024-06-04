@@ -4,6 +4,9 @@ import 'package:@package/data/provider/service/@pname_service.dart';
 
 import 'state.dart';
 
+/// [describe] @name:画面ロジック
+///
+/// [date] @time
 class @nameLogic extends ViewMode<@nameActions, @nameService> {
   final @nameState @fnameState = @nameState();
 

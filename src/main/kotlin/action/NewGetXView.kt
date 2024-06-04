@@ -22,7 +22,7 @@ open class NewGetXView(private val getXListener: GetXListener) {
     private var jDialog: JDialog = JDialog(JFrame(), "GetX Helper Code Produce")
     lateinit var nameTextField: JTextField
     lateinit var modeGroup: ButtonGroup
-    lateinit var httpGroup: ButtonGroup
+    lateinit var stateGroup: ButtonGroup
 
     /**
      * select Function：main Function
@@ -96,7 +96,7 @@ open class NewGetXView(private val getXListener: GetXListener) {
     private fun setMode(container: Container) {
         //Two rows and two columns
         val template = JPanel()
-        template.layout = GridLayout(1, 3)
+        template.layout = GridLayout(1, 4)
         //Set the main module style：mode, function
         template.border = BorderFactory.createTitledBorder("Select Mode")
 
@@ -114,26 +114,26 @@ open class NewGetXView(private val getXListener: GetXListener) {
         easyBtn.border = BorderFactory.createEmptyBorder(5, 10, 10, 20)
         template.add(easyBtn)
 
-        //http model
-//        val httpBtn = JRadioButton(GetXName.ModeHttpManager, data.modeHttp)
-//        httpBtn.actionCommand = GetXName.ModeHttpManager
-//        httpBtn.addActionListener(actionChangeListener)
-//        httpBtn.border = BorderFactory.createEmptyBorder(5, 10, 10, 20)
-//        template.add(httpBtn)
+        //stateless model
+        val statelessBtn = JRadioButton(GetXName.ModeStateless, data.modeStateless)
+        statelessBtn.actionCommand = GetXName.ModeStateless
+        statelessBtn.addActionListener(actionChangeListener)
+        statelessBtn.border = BorderFactory.createEmptyBorder(5, 10, 10, 20)
+        template.add(statelessBtn)
 
-        //use case model
-        val useCaseBtn = JRadioButton(GetXName.ModeUseCase, data.modeUseCase)
-        useCaseBtn.actionCommand = GetXName.ModeUseCase
-        useCaseBtn.addActionListener(actionChangeListener)
-        useCaseBtn.border = BorderFactory.createEmptyBorder(5, 10, 10, 20)
-        template.add(useCaseBtn)
+        //stateful model
+        val statefulBtn = JRadioButton(GetXName.ModeStateful, data.modeStateful)
+        statefulBtn.actionCommand = GetXName.ModeStateful
+        statefulBtn.addActionListener(actionChangeListener)
+        statefulBtn.border = BorderFactory.createEmptyBorder(5, 10, 10, 20)
+        template.add(statefulBtn)
 
         modeGroup = ButtonGroup()
         modeGroup.add(defaultBtn)
         modeGroup.add(easyBtn)
-        httpGroup = ButtonGroup()
-//        httpGroup.add(httpBtn)
-        httpGroup.add(useCaseBtn)
+        stateGroup = ButtonGroup()
+        stateGroup.add(statelessBtn)
+        stateGroup.add(statefulBtn)
 
         container.add(template)
         setSpacing(container)

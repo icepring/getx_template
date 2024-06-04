@@ -21,10 +21,10 @@ class DataService : PersistentStateComponent<DataService> {
     var modeEasy = false
 
     @JvmField
-    var modeHttp = false
+    var modeStateless = true
 
     @JvmField
-    var modeUseCase = true
+    var modeStateful = false
 
     //module name suffix
     @JvmField

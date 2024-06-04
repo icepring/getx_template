@@ -11,6 +11,8 @@ import helper.DataService
 import helper.GetXName
 import helper.TemplateInfo
 import java.io.*
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -48,9 +50,9 @@ class NewGetXAction : AnAction() {
                 data.modeEasy = (GetXName.ModeEasy == modelType)
 
                 //deal default value
-                val httpType = view.httpGroup.selection.actionCommand
-                data.modeHttp = (GetXName.ModeHttpManager == httpType)
-                data.modeUseCase = (GetXName.ModeUseCase == httpType)
+                val stateType = view.stateGroup.selection.actionCommand
+                data.modeStateless = (GetXName.ModeStateless == stateType)
+                data.modeStateful = (GetXName.ModeStateful == stateType)
 
                 //function area
                 data.function.useFolder = view.folderBox.isSelected
@@ -127,20 +129,15 @@ class NewGetXAction : AnAction() {
             generateFile("binding.dart", path, "${prefixName}binding.dart")
         }
 
-        if (data.modeUseCase) {
-            // app\lib\data\provider\use_case
-            val useCasePath =
-                project?.basePath + File.separator + "lib" + File.separator + "data" + File.separator + "provider" + File.separator + "use_case"
-            // app\lib\data\provider\service
-            val servicePath =
-                project?.basePath + File.separator + "lib" + File.separator + "data" + File.separator + "provider" + File.separator + "service"
-            generateFile("usecase.dart", useCasePath, "${prefixName}api_use_case.dart")
-            generateFile("service.dart", servicePath, "${prefixName}service.dart")
-        } else if (data.modeHttp) {
-            val repositoryPath =
-                project?.basePath + File.separator + "lib" + File.separator + "data" + File.separator + "repository"
-            generateFile("repository.dart", repositoryPath, "${prefixName}repository.dart")
-        }
+
+        // app\lib\data\provider\use_case
+        val useCasePath =
+            project?.basePath + File.separator + "lib" + File.separator + "data" + File.separator + "provider" + File.separator + "use_case"
+        // app\lib\data\provider\service
+        val servicePath =
+            project?.basePath + File.separator + "lib" + File.separator + "data" + File.separator + "provider" + File.separator + "service"
+        generateFile("usecase.dart", useCasePath, "${prefixName}api_use_case.dart")
+        generateFile("service.dart", servicePath, "${prefixName}service.dart")
 
     }
 
@@ -153,7 +150,20 @@ class NewGetXAction : AnAction() {
                 data.module.logicName.lowercase(Locale.getDefault()).replace("viewmode".toRegex(), "view_mode")
             }.dart"
         )
-        generateFile("view.dart", path, "$prefixName${data.module.viewFileName.lowercase(Locale.getDefault())}.dart")
+        if (data.modeStateless) {
+            generateFile(
+                "view.dart",
+                path,
+                "$prefixName${data.module.viewFileName.lowercase(Locale.getDefault())}.dart"
+            )
+        } else {
+            generateFile(
+                "fulview.dart",
+                path,
+                "$prefixName${data.module.viewFileName.lowercase(Locale.getDefault())}.dart"
+            )
+
+        }
     }
 
     private fun generateEasy(path: String, prefixName: String) {
@@ -235,7 +245,8 @@ class NewGetXAction : AnAction() {
         content = content.replace(
             "@fname".toRegex(),
             named.replaceFirstChar { it.lowercase(Locale.getDefault()) })
-        content = content.replace("@package".toRegex(), "untitled1")
+        content = content.replace("@package".toRegex(), "shisankeisei")
+        content = content.replace("@time".toRegex(), getNowDate())
 
         return content
     }
@@ -301,7 +312,6 @@ class NewGetXAction : AnAction() {
         tempContent = tempContent.replace("@nameState".toRegex(), "@name${data.module.stateName}")
         tempContent = tempContent.replace("state".toRegex(), data.module.stateName.lowercase(Locale.getDefault()))
         tempContent = tempContent.replace("viewmode".toRegex(), "view_mode")
-
         return tempContent
     }
 
@@ -422,5 +432,11 @@ class NewGetXAction : AnAction() {
 
     private fun upperCase(str: String): String {
         return str.substring(0, 1).uppercase(Locale.getDefault()) + str.substring(1)
+    }
+
+    private fun getNowDate():String{
+        val currentDate = LocalDate.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+       return currentDate.format(formatter)
     }
 }
