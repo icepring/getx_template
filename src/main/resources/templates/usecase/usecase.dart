@@ -1,5 +1,7 @@
 import 'package:@package/base/net/base_api_use_case.dart';
 
+/// [author] @user
+///
 /// [describe] @name:ユースケース
 ///
 /// [date] @time

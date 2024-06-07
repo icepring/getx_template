@@ -5,6 +5,8 @@ import 'state.dart';
 
 import 'package:@package/base/mvvm/view/base_stateless_page.dart';
 
+/// [author] @user
+///
 /// [describe] @name:ページ
 ///
 /// [date] @time

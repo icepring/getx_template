@@ -6,6 +6,8 @@ import 'package:@package/data/provider/use_case/@pname_api_use_case.dart';
 
 part '@pname_state.freezed.dart';
 
+/// [author] @user
+///
 /// [describe] @name:状態管理
 ///
 /// [date] @time

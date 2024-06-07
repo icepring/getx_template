@@ -247,6 +247,7 @@ class NewGetXAction : AnAction() {
             named.replaceFirstChar { it.lowercase(Locale.getDefault()) })
         content = content.replace("@package".toRegex(), "shisankeisei")
         content = content.replace("@time".toRegex(), getNowDate())
+        content = content.replace("@user".toRegex(), getNowUser())
 
         return content
     }
@@ -438,5 +439,9 @@ class NewGetXAction : AnAction() {
         val currentDate = LocalDate.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
        return currentDate.format(formatter)
+    }
+
+    private fun getNowUser():String{
+        return System.getProperty("user.name")
     }
 }

@@ -4,6 +4,8 @@ import 'package:@package/data/provider/service/@pname_service.dart';
 
 import 'state.dart';
 
+/// [author] @user
+///
 /// [describe] @name:画面ロジック
 ///
 /// [date] @time
