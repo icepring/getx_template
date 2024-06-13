@@ -14,7 +14,7 @@ class @namePage extends BaseStatefulPage {
   const @namePage({super.key});
 
   @override
-  _@nameState createState() => _@nameState();
+  BaseState createState() => _@nameState();
 }
 
 class _@nameState extends BaseState<@nameViewMode, @namePage>{
