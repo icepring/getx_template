@@ -405,7 +405,7 @@ class NewGetXAction : AnAction() {
         var content = ""
         try {
             val input = this.javaClass.getResourceAsStream("$defaultFolder$inputFileName")
-            content = String(readStream(input!!))
+            content = String(readStream(input!!), Charsets.UTF_8)
         } catch (e: Exception) {
             //some error
         }
