@@ -345,7 +345,7 @@ class NewGetXAction : AnAction() {
     }
 
     private fun replaceUseCase(content: String, inputFileName: String): String {
-        var tempContent = content
+        val tempContent = content
         if (!inputFileName.contains("usecase.dart")) {
             return tempContent
         }
@@ -356,7 +356,7 @@ class NewGetXAction : AnAction() {
     }
 
     private fun replaceService(content: String, inputFileName: String): String {
-        var tempContent = content
+        val tempContent = content
         if (!inputFileName.contains("service.dart")) {
             return tempContent
         }
@@ -365,7 +365,7 @@ class NewGetXAction : AnAction() {
     }
 
     private fun replaceRepository(content: String, inputFileName: String): String {
-        var tempContent = content
+        val tempContent = content
         if (!inputFileName.contains("repository.dart")) {
             return tempContent
         }
