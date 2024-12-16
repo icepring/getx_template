@@ -8,8 +8,6 @@ import 'package:@package/data/provider/use_case/@pname_api_use_case.dart';
 ///
 /// [date] @time
 class @nameService extends BaseService {
-  Future<ResponseEntity<List>> get@nameList(@nameRequest? @fnameRequest) {
-    @nameAPIUseCase @fnameAPIUseCase = createUseCase(@nameAPIUseCase());
-    return @fnameAPIUseCase.get(@fnameRequest);
-  }
+  Future<ResponseEntity<List>> get@nameList(@nameRequest? @fnameRequest, {HttpMethod? method}) =>
+      getNewDataFromNet(@fnameAPIUseCase(), request, method: method);
 }

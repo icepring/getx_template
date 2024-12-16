@@ -17,7 +17,7 @@ group 'com.tao.getx'
 // the corresponding settings in Plugin.xml will be invalid
 // The two settings below are updated frequently, so put them here
 // The version number is modified here
-version '3.3.2'
+version '3.4.0'
 // must!!!
 //sourceCompatibility = 1.8
 compileKotlin {
