@@ -1,5 +1,5 @@
 <idea-plugin>
-    <id>com.tao.getx</id>
+    <id>com.tym.getx</id>
     <!-- Plug-in name, the name displayed by the official plugin library -->
     <name>GetXHelper</name>
     <!-- version number  -->
