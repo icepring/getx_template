@@ -11,6 +11,7 @@ import helper.DataService
 import helper.GetXName
 import helper.TemplateInfo
 import java.io.*
+import java.nio.charset.StandardCharsets
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -194,7 +195,7 @@ class NewGetXAction : AnAction() {
             if (!file.exists()) {
                 file.createNewFile()
             }
-            val fw = FileWriter(file.absoluteFile)
+            val fw = FileWriter(file, StandardCharsets.UTF_8, false)
             val bw = BufferedWriter(fw)
             bw.write(content)
             bw.close()
@@ -241,7 +242,9 @@ class NewGetXAction : AnAction() {
             part.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
         }
         content = content.replace("@name".toRegex(), named)
+        // project name
         content = content.replace("@pname".toRegex(), name.replaceFirstChar { it.lowercase(Locale.getDefault()) })
+        // file name
         content = content.replace(
             "@fname".toRegex(),
             named.replaceFirstChar { it.lowercase(Locale.getDefault()) })
